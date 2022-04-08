@@ -212,7 +212,7 @@ namespace API.Controllers
                 return NotFound($"{nameof(Category)} with id='{categoryId}' is not valid!");
             }
 
-            var filteredCategories = _productRepository.Find(c => 
+            var filteredProducts = _productRepository.Find(c => 
                 (c.CategoryId.Value == categoryId) && 
                 (string.IsNullOrWhiteSpace(filter.ProductName) || c.ProductName.ToLower().StartsWith(filter.ProductName.ToLower())) &&
                 (filter.SupplierId == null || c.SupplierId == filter.SupplierId)
@@ -237,7 +237,7 @@ namespace API.Controllers
                     };
                 });
 
-            return Ok(filteredCategories);
+            return Ok(filteredProducts);
         }
         #endregion
 
