@@ -230,9 +230,9 @@ namespace API.Controllers
                         p.ProductName,
                         Discontinued = p.Discontinued ? "yes" : "no",
                         p.CategoryId,
-                        CategoryName = p.CategoryId.HasValue ? _repository.GetById(p.CategoryId.Value)?.CategoryName : null,
+                        CategoryName = p.CategoryId.HasValue ? _repository.GetById(p.CategoryId.Value)?.CategoryName : String.Empty,
                         p.SupplierId,
-                        SupplierName = supplier != null ? $"{supplier.CompanyName} - {supplier.Country}" : null,
+                        SupplierName = supplier != null ? string.Concat(supplier.CompanyName, "-", supplier.Country) : String.Empty,
                         OrderDetailCount = _orderDetailRepository.Find(od => od.ProductId == p.ProductId)?.Count()
                     };
                 });
